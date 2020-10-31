@@ -5,8 +5,56 @@
 		<link rel="stylesheet" href="../static/style.css">
 	</head>
 	<body>
-		<div class="header">
+		<div class="borderbox">
 		  <h1> Travelert </h1>
+		</div>
+
+		<div class="borderbox form">
+			<form>
+				<div class="row places">
+					<div class="col-4"></div>
+					<label class="lab col-3" for="from">From:</label>
+					<input class="box col-2" type="text" id="from" name="from">	
+					<div class="col-1"></div>
+					<label class="lab col-3" for="to">To:</label>
+					<input class="box col-2" type="text" id="to" name="to"><br>	
+				</div>
+				<div class="range">
+					<div class="row">
+						<div class="col-4"></div>
+						<label class="lab col-4" for="departure">Departure Range:</label>
+						<input class="box col-3" type="text" id="departure_st" name="departure_st">
+						<div class="col-1 lab italic">to</div>
+						<input class="box col-3" type="text" id="departure_end" name="departure_end"><br>
+					</div>
+					<div class="row">
+						<div class="col-4"></div>
+						<label class="lab col-4" for="arrival">Arrival Range:</label>
+						<input class="box col-3" type="text" id="arrival_st" name="arrival_st">
+						<div class="col-1 lab italic">to</div>
+						<input class="box col-3" type="text" id="arrival_st" name="arrival_st">	<br>		
+					</div>
+				</div>
+				<div>
+					<div class="row">
+						<div class="col-6"></div>
+						<label class="lab col-3" for="arrival">Budget:</label>
+						<div class="col-1 lab">$</div>
+						<input class="box col-3" type="text" id="budget" name="budget">
+					</div>
+					<div class="row">
+						<div class="col-6"></div>
+						<label class="lab col-3" for="arrival">Email:</label>
+						<div class="col-1"></div>
+						<input class="box col-3" type="text" id="email" name="email"><br>
+					</div>
+				</div>
+				<div>
+					<div class="row">
+						<input class="btn" type="col-8 submit" value="Create Alert">
+					</div>
+				</div>
+			</form>
 		</div>
 	</body>
 </html>

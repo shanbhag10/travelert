@@ -7,15 +7,26 @@
   padding: 15px;
 }
 
-.header {
-  background-color: white;
-}
-
-.col-1 {width: 20%;}
-.col-2 {width: 40%;}
-.col-3 {width: 60%;}
-.col-4 {width: 80%;}
-.col-5 {width: 100%;}
+.col-1 {width: 5%;}
+.col-2 {width: 10%;}
+.col-3 {width: 15%;}
+.col-4 {width: 20%;}
+.col-5 {width: 25%;}
+.col-6 {width: 30%;}
+.col-7 {width: 35%;}
+.col-8 {width: 40%;}
+.col-9 {width: 45%;}
+.col-10 {width: 50%;}
+.col-11 {width: 55%;}
+.col-12 {width: 60%;}
+.col-13 {width: 65%;}
+.col-14 {width: 70%;}
+.col-15 {width: 75%;}
+.col-16 {width: 80%;}
+.col-17 {width: 85%;}
+.col-18 {width: 90%;}
+.col-19 {width: 95%;}
+.col-20 {width: 100%;}
 
 body {
   font-family: 'Candara';
@@ -28,4 +39,68 @@ h1 {
   text-align: center;
   font-family: 'Candara';
   font-size: 70px;
+}
+
+.borderbox {
+  background-color: white;
+  margin: 10px 10px 10px 10px;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24);
+  text-align: center;
+  border-radius: 1%;
+  font-family: 'Candara';
+  font-size: 20px;
+}
+
+.form {
+  padding: 10px 30px 10px 10px;
+  height: 650px;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.row {
+  padding: 15px 9px 15px 9px;
+  margin-bottom: 2%;
+  margin-top: 2%;
+}
+
+.places {
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
+
+.range {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.box {
+  padding: 5px;
+  border-radius: 5%;
+  border-width: 0px;
+  background-color: #DFDFDF;
+  height: 30px;
+}
+
+.lab {
+  padding: 5px;
+  border-radius: 5%;
+  border-width: 1px;
+}
+
+.btn {
+  padding: 20px 10px 10px 10px;
+  background-color: #8A10B6;
+  text-align: center;
+  margin: 5px 5px 5px 5px;
+  font-family: 'Candara';
+  font-size: 30px;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24);
+  text-align: center;
+  border-radius: 5%;
+  border-width: 0;
+  height: 60px;
+  color: white;
 }
