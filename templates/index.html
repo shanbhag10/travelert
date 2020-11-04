@@ -13,26 +13,37 @@
 			<form>
 				<div class="row places">
 					<div class="col-4"></div>
-					<label class="lab col-3" for="from">From:</label>
-					<input class="box col-2" type="text" id="from" name="from">	
+					<label class="lab col-3" for="from">From:</label>					
+					<select class="box col-2" id="from">
+						<option>Choose airport</option>
+						{% for a in airports %}
+							<option value={{a}}>{{a}}</option>
+						{% endfor %}
+					</select>
+					
 					<div class="col-1"></div>
 					<label class="lab col-3" for="to">To:</label>
-					<input class="box col-2" type="text" id="to" name="to"><br>	
+					<select class="box col-2" id="to" name="to">
+						<option>Choose airport</option>
+						{% for a in airports %}
+							<option value={{a}}>{{a}}</option>
+						{% endfor %}
+					</select>
 				</div>
 				<div class="range">
 					<div class="row">
-						<div class="col-4"></div>
-						<label class="lab col-4" for="departure">Departure Range:</label>
-						<input class="box col-3" type="text" id="departure_st" name="departure_st">
+						<div class="col-3"></div>
+						<label class="lab col-6" for="departure">Departure Date Range:</label>
+						<input class="box col-3" type="date" id="departure_st" name="departure_st">
 						<div class="col-1 lab italic">to</div>
-						<input class="box col-3" type="text" id="departure_end" name="departure_end"><br>
+						<input class="box col-3" type="date" id="departure_end" name="departure_end"><br>
 					</div>
 					<div class="row">
-						<div class="col-4"></div>
-						<label class="lab col-4" for="arrival">Arrival Range:</label>
-						<input class="box col-3" type="text" id="arrival_st" name="arrival_st">
+						<div class="col-3"></div>
+						<label class="lab col-6" for="arrival">Arrival Date Range:</label>
+						<input class="box col-3" type="date" id="arrival_st" name="arrival_st">
 						<div class="col-1 lab italic">to</div>
-						<input class="box col-3" type="text" id="arrival_st" name="arrival_st">	<br>		
+						<input class="box col-3" type="date" id="arrival_st" name="arrival_st">	<br>		
 					</div>
 				</div>
 				<div>
@@ -58,3 +69,19 @@
 		</div>
 	</body>
 </html>
+
+<script>
+	$(document).ready(function(){
+		load_airports('to')
+		
+		function load_airports(id) {
+			var html_code = '';
+			$getJSON('airports.json', function(data) {
+				$.each(data, function(key, value) {
+					html_code += '<option value = "'+value+'">'+value+'</option>';
+				});
+				$('#'+id).html(html_code);
+			});
+		}
+	});
+</script>
