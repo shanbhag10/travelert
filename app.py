@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import csv
 app = Flask(__name__)
 
@@ -6,6 +6,18 @@ app = Flask(__name__)
 def home():
     airports = getAirports()
     return render_template('index.html', airports=airports)
+
+@app.route("/success", methods=['POST', 'GET'])
+def createAlert():
+    if request.method == 'POST':
+        result = request.form
+        alert = {}
+        alert["Flight"] = result["From"] +" to "+ result["To"]
+        alert["Departure"] = result["Departure_st"] +" to "+result["Departure_end"]
+        alert["Arrival"] = result["Arrival_st"] +" to "+result["Arrival_end"]
+        alert["Budget"] = "$ " +result["Budget"]
+        alert["Email"] = result["Email"]
+        return render_template('success.html', alert=alert)
 
 def getAirports():
     airports = []

@@ -10,11 +10,11 @@
 		</div>
 
 		<div class="borderbox form">
-			<form>
+			<form action="/success" method="POST">
 				<div class="row places">
 					<div class="col-4"></div>
 					<label class="lab col-3" for="from">From:</label>					
-					<select class="box col-2" id="from">
+					<select class="box col-2" id="from" name="From">
 						<option>Choose airport</option>
 						{% for a in airports %}
 							<option value={{a}}>{{a}}</option>
@@ -23,7 +23,7 @@
 					
 					<div class="col-1"></div>
 					<label class="lab col-3" for="to">To:</label>
-					<select class="box col-2" id="to" name="to">
+					<select class="box col-2" id="to" name="To">
 						<option>Choose airport</option>
 						{% for a in airports %}
 							<option value={{a}}>{{a}}</option>
@@ -34,16 +34,16 @@
 					<div class="row">
 						<div class="col-3"></div>
 						<label class="lab col-6" for="departure">Departure Date Range:</label>
-						<input class="box col-3" type="date" id="departure_st" name="departure_st">
+						<input class="box col-3" type="date" id="departure_st" name="Departure_st">
 						<div class="col-1 lab italic">to</div>
-						<input class="box col-3" type="date" id="departure_end" name="departure_end"><br>
+						<input class="box col-3" type="date" id="departure_end" name="Departure_end"><br>
 					</div>
 					<div class="row">
 						<div class="col-3"></div>
 						<label class="lab col-6" for="arrival">Arrival Date Range:</label>
-						<input class="box col-3" type="date" id="arrival_st" name="arrival_st">
+						<input class="box col-3" type="date" id="arrival_st" name="Arrival_st">
 						<div class="col-1 lab italic">to</div>
-						<input class="box col-3" type="date" id="arrival_st" name="arrival_st">	<br>		
+						<input class="box col-3" type="date" id="arrival_end" name="Arrival_end">	<br>		
 					</div>
 				</div>
 				<div>
@@ -51,18 +51,18 @@
 						<div class="col-6"></div>
 						<label class="lab col-3" for="arrival">Budget:</label>
 						<div class="col-1 lab">$</div>
-						<input class="box col-3" type="text" id="budget" name="budget">
+						<input class="box col-3" type="text" id="budget" name="Budget">
 					</div>
 					<div class="row">
 						<div class="col-6"></div>
 						<label class="lab col-3" for="arrival">Email:</label>
 						<div class="col-1"></div>
-						<input class="box col-3" type="text" id="email" name="email"><br>
+						<input class="box col-3" type="text" id="email" name="Email"><br>
 					</div>
 				</div>
 				<div>
 					<div class="row">
-						<button class="btn">Create Alert</button>
+						<button class="btn" type="submit" value="submit">Create Alert</button>
 					</div>
 				</div>
 			</form>

@@ -41,6 +41,13 @@ h1 {
   font-size: 75px;
 }
 
+h3 {
+  color: #8A10B6;
+  text-align: center;
+  font-family: 'Trebuchet MS';
+  font-size: 30px;
+}
+
 .borderbox {
   background-color: white;
   margin: 1% 11% 1% 11%;
@@ -104,4 +111,40 @@ h1 {
   height: 50px;
   width: 333px;
   color: white;
+}
+
+.result {
+  padding: 20px 10px 20px 10px;
+  text-align: center;
+  border-width: 5;
+  border-color: black;
+  align-items: center;
+}
+
+.success {
+  text-align: center;
+  font-family: 'Trebuchet MS';
+  color: #8A10B6;
+  padding: 20px 10px 20px 10px;
+}
+
+#result {
+  align-items: center;
+  font-family: 'Trebuchet MS';
+  width: 50%;
+}
+
+#result td, #result th {
+  border: 2px solid black;
+  padding: 8px;
+}
+
+table.center {
+  margin-left: auto; 
+  margin-right: auto;
+}
+
+.message {
+  padding: 10px 50px 10px 50px;
+  text-align: center;
 }
