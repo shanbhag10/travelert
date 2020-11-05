@@ -30,7 +30,16 @@
 
 body {
   font-family: 'Trebuchet MS';
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.sky2 {
   background-image: url("sky2.jpg");
+}
+
+.sky {
+  background-image: url("sky.jpg");
 }
 
 h1 {
