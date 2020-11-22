@@ -36,11 +36,11 @@ body, html {
 }
 
 .sky2 {
-  background-image: url("sky2.jpg");
+  background-image: url("sky.jpg");
 }
 
 .sky {
-  background-image: url("sky.jpg");
+  background-image: url("sky2.jpg");
 }
 
 h1 {
