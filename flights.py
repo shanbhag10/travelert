@@ -14,7 +14,8 @@ class Flight:
 
 chrome_options = Options()  
 chrome_options.add_argument("--headless")  
-driver = webdriver.Chrome('/usr/local/bin/chromedriver', options=chrome_options)
+driver = webdriver.Chrome('/app/.chromedriver/bin/chromedriver', options=chrome_options)
+#driver = webdriver.Chrome('/usr/local/bin/chromedriver', options=chrome_options)
 
 def scan_skiplagged(alert):
 	url = "https://skiplagged.com/flights/"+alert.source+"/"+alert.destination+"/"+alert.departure_range[0]+"/"+alert.arrival_range[0]
