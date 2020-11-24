@@ -29,7 +29,7 @@ def scan_skiplagged(alert, debug):
 		chrome_options.add_argument('--disable-gpu')
 		chrome_options.add_argument('--no-sandbox')
 		chrome_options.binary_location = GOOGLE_CHROME_PATH
-		driver = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, options=chrome_options)
+		driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=chrome_options)
 
 	url = "https://skiplagged.com/flights/"+alert.source+"/"+alert.destination+"/"+alert.departure_range[0]+"/"+alert.arrival_range[0]
 	print(url)
