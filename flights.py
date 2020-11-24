@@ -46,6 +46,7 @@ def scan_skiplagged(alert):
 			flights.append(flight)
 
 		except Exception as error:
+			print("error" + str(error))
 			break
 
 	return flights
