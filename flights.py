@@ -3,6 +3,12 @@ from selenium.webdriver.chrome.options import Options
 import time
 import json
 
+GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
+CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
+
+chrome_options = Options()  
+chrome_options.add_argument("--headless")  
+
 class Flight:
 	def __init__(self, cost, duration, stops):
 		self.cost = cost
@@ -16,13 +22,15 @@ class Flight:
 	def to_string(self):
 		return self.__dict__
 
-chrome_options = Options()  
-chrome_options.add_argument("--headless")  
+def scan_skiplagged(alert, debug):
+	if debug == True:
+		driver = webdriver.Chrome('/usr/local/bin/chromedriver', options=chrome_options)
+	else:
+		chrome_options.add_argument('--disable-gpu')
+		chrome_options.add_argument('--no-sandbox')
+		chrome_options.binary_location = GOOGLE_CHROME_PATH
+		driver = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, options=chrome_options)
 
-driver = webdriver.Chrome('/app/.chromedriver/bin/chromedriver', options=chrome_options)
-#driver = webdriver.Chrome('/usr/local/bin/chromedriver', options=chrome_options)
-
-def scan_skiplagged(alert):
 	url = "https://skiplagged.com/flights/"+alert.source+"/"+alert.destination+"/"+alert.departure_range[0]+"/"+alert.arrival_range[0]
 	print(url)
 	driver.get(url)
@@ -51,5 +59,5 @@ def scan_skiplagged(alert):
 
 	return flights
 
-def get_valid_flights(alert):
-	return scan_skiplagged(alert)
+def get_valid_flights(alert, debug):
+	return scan_skiplagged(alert, debug)

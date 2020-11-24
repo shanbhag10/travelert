@@ -53,7 +53,7 @@ def get_display_alert(alert):
     display_alert["Arrival"] = alert.arrival_range[0] +" to "+alert.arrival_range[1]
     display_alert["Budget"] = "$ " +alert.flight_request.cost
     display_alert["Email"] = alert.user.email
-    flights = get_valid_flights(alert)
+    flights = get_valid_flights(alert, app.debug)
     if (len(flights) > 0):
         display_alert["flight_info_test"] = str(flights[0].cost)
     return display_alert
