@@ -1,4 +1,5 @@
 from flights import *
+import json
 
 class Alert:
 	def __init__(self, source, destination, departure_range, arrival_range, flight_request, user):
@@ -8,6 +9,9 @@ class Alert:
 		self.arrival_range = arrival_range
 		self.flight_request = flight_request
 		self.user = user
+
+	def to_string(self):
+		return self.__dict__
 
 class User:
 	def __init__(self, email):

@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
+import json
 
 class Flight:
 	def __init__(self, cost, duration, stops):
@@ -8,19 +9,24 @@ class Flight:
 		self.duration = duration
 		
 		if stops == 'non':
-			self.stops = 0
+			self.stops = '0'
 		else:
 			self.stops = stops
 
+	def to_string(self):
+		return self.__dict__
+
 chrome_options = Options()  
 chrome_options.add_argument("--headless")  
+
 driver = webdriver.Chrome('/app/.chromedriver/bin/chromedriver', options=chrome_options)
 #driver = webdriver.Chrome('/usr/local/bin/chromedriver', options=chrome_options)
 
 def scan_skiplagged(alert):
 	url = "https://skiplagged.com/flights/"+alert.source+"/"+alert.destination+"/"+alert.departure_range[0]+"/"+alert.arrival_range[0]
+	print(url)
 	driver.get(url)
-	time.sleep(2)
+	time.sleep(10)
 
 	flights = []
 	for i in range (2,20):
@@ -36,6 +42,7 @@ def scan_skiplagged(alert):
 				details = details[2:]
 
 			flight = Flight(cost, details[0], details[1])
+			print(flight.to_string())
 			flights.append(flight)
 
 		except Exception as error:

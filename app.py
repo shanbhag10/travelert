@@ -3,6 +3,7 @@ import time, threading
 import csv
 from flights import *
 from alerts import *
+import logging
 
 app = Flask(__name__)
 
@@ -32,7 +33,9 @@ def create_alert_from_input(request):
     arrival_range = (request["Arrival_st"], request["Arrival_end"])
     flight_request = Flight(request["Budget"], '8h', '1')
     user = User(request["Email"])
-    return Alert(request["From"], request["To"], departure_range, arrival_range, flight_request, user)
+    alert = Alert(request["From"], request["To"], departure_range, arrival_range, flight_request, user)
+    print(alert.to_string())
+    return alert
 
 def get_airports():
     airports = []
@@ -51,7 +54,8 @@ def get_display_alert(alert):
     display_alert["Budget"] = "$ " +alert.flight_request.cost
     display_alert["Email"] = alert.user.email
     flights = get_valid_flights(alert)
-    display_alert["flight_info_test"] = str(flights[0].cost)
+    if (len(flights) > 0):
+        display_alert["flight_info_test"] = str(flights[0].cost)
     return display_alert
 
 if __name__ == "__main__":
