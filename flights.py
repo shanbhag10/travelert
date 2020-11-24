@@ -28,7 +28,7 @@ def scan_skiplagged(alert, debug, driver):
 	time.sleep(10)
 
 	flights = []
-	for i in range (2,20):
+	for i in range (2,11):
 		try:
 			cost_text = driver.find_element_by_xpath('/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[6]/div/div['+str(i)+']/div[3]/p')
 			duration = driver.find_element_by_xpath('/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[6]/div/div['+str(i)+']/div[1]')
@@ -51,9 +51,9 @@ def scan_skiplagged(alert, debug, driver):
 	return flights
 
 def get_valid_flights(alert, debug):
-	chrome_options = webdriver.ChromeOptions()  
-	chrome_options.add_argument("--headless")  
+	chrome_options = webdriver.ChromeOptions()    
 	if debug == True:
+		chrome_options.add_argument("--headless")
 		driver = webdriver.Chrome('/usr/local/bin/chromedriver', options=chrome_options)
 	else:
 		chrome_options.add_argument('--disable-gpu')
