@@ -1,5 +1,8 @@
 from selenium import webdriver
+from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.expected_conditions import visibility_of_element_located
+from selenium.webdriver.common.by import By
 import time
 import json
 
@@ -28,12 +31,13 @@ def scan_skiplagged(alert, debug):
 	else:
 		chrome_options.add_argument('--disable-gpu')
 		chrome_options.add_argument('--no-sandbox')
-		chrome_options.binary_location = GOOGLE_CHROME_PATH
+		#chrome_options.binary_location = GOOGLE_CHROME_PATH
 		driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=chrome_options)
 
 	url = "https://skiplagged.com/flights/"+alert.source+"/"+alert.destination+"/"+alert.departure_range[0]+"/"+alert.arrival_range[0]
 	print(url)
 	driver.get(url)
+	WebDriverWait(driver, 100).until(visibility_of_element_located((By.XPATH, '/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[6]/div/div[2]/div[3]/p')))
 	time.sleep(10)
 
 	flights = []
