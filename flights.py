@@ -51,14 +51,14 @@ def scan_skiplagged(alert, debug, driver):
 	return flights
 
 def get_valid_flights(alert, debug):
-	chrome_options = webdriver.ChromeOptions()    
+	chrome_options = webdriver.ChromeOptions()  
+	chrome_options.add_argument('--no-sandbox')
+	chrome_options.add_argument("--headless")  
 	if debug == True:
-		chrome_options.add_argument("--headless")
 		driver = webdriver.Chrome('/usr/local/bin/chromedriver', options=chrome_options)
 	else:
 		chrome_options.add_argument('--disable-gpu')
 		chrome_options.add_argument('--disable-dev-shm-usage')
-		chrome_options.add_argument('--no-sandbox')
 		chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 		driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
 
