@@ -1,4 +1,6 @@
 from selenium import webdriver
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
+
 #from selenium.webdriver.chrome.options import Options
 import time
 import json
@@ -65,5 +67,7 @@ def get_valid_flights(alert, debug):
 	# 	chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 	# 	driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
 
-	driver = swebdriver.PhantomJS()
+	options = FirefoxOptions()
+	options.add_argument("--headless")
+	driver = webdriver.Firefox(options=options)
 	return scan_skiplagged(alert, debug, driver)
