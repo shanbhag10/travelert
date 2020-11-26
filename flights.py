@@ -1,5 +1,5 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+#from selenium.webdriver.chrome.options import Options
 import time
 import json
 import os
@@ -24,7 +24,7 @@ def scan_skiplagged(alert, debug, driver):
 	driver.get(url)
 	time.sleep(10)
 	print(driver.title)
-	
+
 	flights = []
 	try:
 		costs = driver.find_elements_by_css_selector('div.trip-cost')
@@ -51,17 +51,19 @@ def scan_skiplagged(alert, debug, driver):
 	return flights
 
 def get_valid_flights(alert, debug):
-	chrome_options = webdriver.ChromeOptions()  
+	# chrome_options = webdriver.ChromeOptions()  
 	
-	chrome_options.add_argument("--headless") 
-	chrome_options.add_argument('--disable-gpu')
-	chrome_options.add_argument('--disable-dev-shm-usage')
-	chrome_options.add_argument('--no-sandbox')
+	# chrome_options.add_argument("--headless") 
+	# chrome_options.add_argument('--disable-gpu')
+	# chrome_options.add_argument('--disable-dev-shm-usage')
+	# chrome_options.add_argument('--no-sandbox')
 	
-	if debug == True:
-		driver = webdriver.Chrome('/usr/local/bin/chromedriver', options=chrome_options)
-	else:
-		chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-		driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
+	# if debug == True:
+	# 	#driver = webdriver.Chrome('/usr/local/bin/chromedriver', options=chrome_options)
+	# 	driver = swebdriver.PhantomJS()
+	# else:
+	# 	chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+	# 	driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
 
+	driver = swebdriver.PhantomJS()
 	return scan_skiplagged(alert, debug, driver)
