@@ -32,6 +32,7 @@ def scan_skiplagged(alert, debug, driver):
 		print("Error: " + str(error))
 		return flights
 
+	print(len(costs))
 	for i in range(len(costs)):
 		#cost_text = driver.find_element_by_xpath('/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[6]/div/div['+str(i)+']/div[3]/p')
 		#duration = driver.find_element_by_xpath('/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[6]/div/div['+str(i)+']/div[1]')
