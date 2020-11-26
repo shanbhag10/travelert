@@ -23,7 +23,8 @@ def scan_skiplagged(alert, debug, driver):
 	print(url)
 	driver.get(url)
 	time.sleep(10)
-
+	print(driver.title)
+	
 	flights = []
 	try:
 		costs = driver.find_elements_by_css_selector('div.trip-cost')
