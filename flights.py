@@ -30,6 +30,20 @@ def scan_skiplagged(alert, debug, driver):
 	try:
 		costs = driver.find_elements_by_css_selector('div.trip-cost')
 		durations = driver.find_elements_by_css_selector('div.trip-duration')
+
+		xpaths = [
+			'/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[3]', 
+			'/html/body/section/div/header/nav/div[1]/a/span',
+			'/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[4]/span',
+			'//*[@id="trip-list-sections"]/div[2]/div[3]/div[4]/span'
+		]
+
+		for x in xpaths:
+			try:
+				print(driver.find_element_by_xpath(x).text)
+			except Exception as error:
+				print(error)
+
 	except Exception as error:
 		print("Error: " + str(error))
 		return flights
