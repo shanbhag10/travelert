@@ -23,19 +23,28 @@ def scan_skiplagged(alert, debug, driver):
 	url = "https://skiplagged.com/flights/"+alert.source+"/"+alert.destination+"/"+alert.departure_range[0]+"/"+alert.arrival_range[0]
 	print(url)
 	driver.get(url)
-	time.sleep(10)
+	time.sleep(30)
 	print(driver.title)
 
 	flights = []
 	try:
 		costs = driver.find_elements_by_class_name('trip-cost')
 		durations = driver.find_elements_by_class_name('trip-duration')
+		cost = driver.find_element_by_xpath('/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[6]/div/div[2]/div[3]/p')
+
+		static_header = driver.find_element_by_xpath('/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[3]')
+		infinite_list = driver.find_elements_by_class_name('infinite-trip-list')
+
 	except Exception as error:
 		print("Error: " + str(error))
 		return flights
 
-	print(len(costs))
-	print(len(durations))
+	#print(len(costs))
+	#print(len(durations))
+	print(cost.text)
+	print(static_header.text)
+	print(infinite_list[0].text)
+
 	for i in range(len(costs)):
 		#cost_text = driver.find_element_by_xpath('/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[6]/div/div['+str(i)+']/div[3]/p')
 		#duration = driver.find_element_by_xpath('/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[6]/div/div['+str(i)+']/div[1]')
