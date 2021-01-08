@@ -28,8 +28,8 @@ def scan_skiplagged(alert, debug, driver):
 
 	flights = []
 	try:
-		costs = driver.find_elements_by_css_selector('trip-cost')
-		durations = driver.find_elements_by_css_selector('trip-duration')
+		costs = driver.find_elements_by_class_name('trip-cost')
+		durations = driver.find_elements_by_class_name('trip-duration')
 	except Exception as error:
 		print("Error: " + str(error))
 		return flights
