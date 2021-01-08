@@ -1,5 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ec
 
 import time
 import json
@@ -23,17 +26,20 @@ def scan_skiplagged(alert, debug, driver):
 	url = "https://skiplagged.com/flights/"+alert.source+"/"+alert.destination+"/"+alert.departure_range[0]+"/"+alert.arrival_range[0]
 	print(url)
 	driver.get(url)
-	time.sleep(10)
+	#time.sleep(10)
 	print(driver.title)
 
 	flights = []
 	try:
-		costs = driver.find_elements_by_class_name('trip-cost')
-		durations = driver.find_elements_by_class_name('trip-duration')
-		cost = driver.find_element_by_xpath('/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[6]/div/div[2]/div[3]/p')
+		#costs = driver.find_elements_by_class_name('trip-cost')
+		#durations = driver.find_elements_by_class_name('trip-duration')
+		#cost = driver.find_element_by_xpath('/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[6]/div/div[2]/div[3]/p')
 
-		static_header = driver.find_element_by_xpath('/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[3]')
-		infinite_list = driver.find_elements_by_class_name('infinite-trip-list')
+		wait = WebDriverWait(driver, 100)
+		infinite_list = wait.until(ec.visibility_of_element_located((By.CLASS_NAME, "infinite-trip-list")))
+
+		#static_header = driver.find_element_by_xpath('/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[3]')
+		#infinite_list = driver.find_elements_by_class_name('infinite-trip-list')
 
 	except Exception as error:
 		print("Error: " + str(error))
@@ -41,23 +47,23 @@ def scan_skiplagged(alert, debug, driver):
 
 	#print(len(costs))
 	#print(len(durations))
-	print(cost.text)
-	print(static_header.text)
-	print(infinite_list[0].text)
+	#print(cost.text)
+	#print(static_header.text)
+	print(infinite_list.text)
 
-	for i in range(len(costs)):
-		#cost_text = driver.find_element_by_xpath('/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[6]/div/div['+str(i)+']/div[3]/p')
-		#duration = driver.find_element_by_xpath('/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[6]/div/div['+str(i)+']/div[1]')
-		#button = driver.find_element_by_xpath('/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[4]/div[7]/div/div[2]/div[3]/button[1]').click()
+	# for i in range(len(costs)):
+	# 	#cost_text = driver.find_element_by_xpath('/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[6]/div/div['+str(i)+']/div[3]/p')
+	# 	#duration = driver.find_element_by_xpath('/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[6]/div/div['+str(i)+']/div[1]')
+	# 	#button = driver.find_element_by_xpath('/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[4]/div[7]/div/div[2]/div[3]/button[1]').click()
 
-		cost = int(costs[i].text[1:])
-		details = durations[i].text.split()
-		if len(details) > 3:
-			details = details[2:]
+	# 	cost = int(costs[i].text[1:])
+	# 	details = durations[i].text.split()
+	# 	if len(details) > 3:
+	# 		details = details[2:]
 
-		flight = Flight(cost, details[0], details[1])
-		print(flight.to_string())
-		flights.append(flight)
+	# 	flight = Flight(cost, details[0], details[1])
+	# 	print(flight.to_string())
+	# 	flights.append(flight)
 
 	return flights
 
