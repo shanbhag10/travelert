@@ -23,7 +23,7 @@ def scan_skiplagged(alert, debug, driver):
 	url = "https://skiplagged.com/flights/"+alert.source+"/"+alert.destination+"/"+alert.departure_range[0]+"/"+alert.arrival_range[0]
 	print(url)
 	driver.get(url)
-	time.sleep(30)
+	time.sleep(10)
 	print(driver.title)
 
 	flights = []
