@@ -28,27 +28,14 @@ def scan_skiplagged(alert, debug, driver):
 
 	flights = []
 	try:
-		costs = driver.find_elements_by_css_selector('div.trip-cost')
-		durations = driver.find_elements_by_css_selector('div.trip-duration')
-
-		xpaths = [
-			'/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[3]', 
-			'/html/body/section/div/header/nav/div[1]/a/span',
-			'/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[4]/span',
-			'//*[@id="trip-list-sections"]/div[2]/div[3]/div[4]/span'
-		]
-
-		for x in xpaths:
-			try:
-				print(driver.find_element_by_xpath(x).text)
-			except Exception as error:
-				print(error)
-
+		costs = driver.find_elements_by_css_selector('trip-cost')
+		durations = driver.find_elements_by_css_selector('trip-duration')
 	except Exception as error:
 		print("Error: " + str(error))
 		return flights
 
 	print(len(costs))
+	print(len(durations))
 	for i in range(len(costs)):
 		#cost_text = driver.find_element_by_xpath('/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[6]/div/div['+str(i)+']/div[3]/p')
 		#duration = driver.find_element_by_xpath('/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[6]/div/div['+str(i)+']/div[1]')
