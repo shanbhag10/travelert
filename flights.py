@@ -36,7 +36,7 @@ def scan_skiplagged(alert, debug, driver):
 		#cost = driver.find_element_by_xpath('/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[6]/div/div[2]/div[3]/p')
 
 		wait = WebDriverWait(driver, 100)
-		infinite_list = wait.until(ec.visibility_of_element_located((By.CLASS_NAME, "infinite-trip-list")))
+		infinite_list = wait.until(ec.visibility_of_element_located((By.XPATH, '/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[6]')))
 
 		#static_header = driver.find_element_by_xpath('/html/body/section/div/div/section/div/div/div/div[2]/div/div[2]/div[3]/div[3]')
 		#infinite_list = driver.find_elements_by_class_name('infinite-trip-list')
