@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request
 import time, threading
 import csv
-from flights import *
-from alerts import *
+from controller.flights import *
+from controller.alerts import *
+from dynamo.alerts_db import *
 import logging
 
 app = Flask(__name__)
@@ -16,12 +17,9 @@ def home():
 def create_alert():
     if request.method == 'POST':
         alert = create_alert_from_input(request.form)
-        #save_alert(alert)
+        save_alert(alert)
         display_alert = get_display_alert(alert)
         return render_template('success.html', display_alert=display_alert)
-
-# def save_alert():
-#     print('alert')
 
 # def scan_flights():
 #     #for all alerts
@@ -45,19 +43,6 @@ def get_airports():
             airports.append(row[4] +" - "+row[1])
 
     return sorted(airports)
-
-def get_display_alert(alert):
-    display_alert = {}
-    display_alert["Flight"] = alert.source +" to "+ alert.destination
-    display_alert["Departure"] = alert.departure_range[0] +" to "+alert.departure_range[1]
-    display_alert["Arrival"] = alert.arrival_range[0] +" to "+alert.arrival_range[1]
-    display_alert["Budget"] = "$ " +alert.flight_request.cost
-    display_alert["Email"] = alert.user.email
-    
-    flights = get_valid_flights(alert, app.debug)
-    if (len(flights) > 0):
-        display_alert["flight_info_test"] = str(flights[0].cost)
-    return display_alert
 
 if __name__ == "__main__":
     app.run(debug=True)
